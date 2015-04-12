@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-abr-2015 14:39:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="compraventamvc1.modelo.datos.Detallecompra" table="detallecompra" catalog="ventacompraparcialmysqlfinal" optimistic-lock="version">
+        <id name="idDetaC" type="java.lang.Integer">
+            <column name="IdDetaC" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="notacompra" class="compraventamvc1.modelo.datos.Notacompra" fetch="select">
+            <column name="IdCompra" />
+        </many-to-one>
+        <property name="cantidad" type="int">
+            <column name="Cantidad" not-null="true" />
+        </property>
+        <property name="precioXcant" type="float">
+            <column name="PrecioXCant" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="idProducto" type="java.lang.Integer">
+            <column name="IdProducto" />
+        </property>
+        <set name="productos" table="producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdCategoria" />
+            </key>
+            <one-to-many class="compraventamvc1.modelo.datos.Producto" />
+        </set>
+    </class>
+</hibernate-mapping>

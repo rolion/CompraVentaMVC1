@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-abr-2015 14:39:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="compraventamvc1.modelo.datos.Cliente" table="cliente" catalog="ventacompraparcialmysqlfinal" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="IdCliente" />
+            <generator class="identity" />
+        </id>
+        <property name="nitCi" type="int">
+            <column name="Nit_CI" not-null="true" unique="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="50" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="50" not-null="true" />
+        </property>
+        <set name="notaventas" table="notaventa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" />
+            </key>
+            <one-to-many class="compraventamvc1.modelo.datos.Notaventa" />
+        </set>
+        <set name="referenciaclientes" table="referenciacliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" />
+            </key>
+            <one-to-many class="compraventamvc1.modelo.datos.Referenciacliente" />
+        </set>
+    </class>
+</hibernate-mapping>

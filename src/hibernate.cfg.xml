@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/VentaCompraParcialMySqlFinal?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">admin</property>
+    <property name="hibernate.connection.password">asdf</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="compraventamvc1/modelo/datos/Detallecompra.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Cliente.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/TiendaSucursal.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Proveedor.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Detalleventa.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Referenciacliente.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Producto.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Notacompra.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Usuario.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Notaventa.hbm.xml"/>
+    <mapping resource="compraventamvc1/modelo/datos/Categoria.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-abr-2015 14:39:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="compraventamvc1.modelo.datos.Notaventa" table="notaventa" catalog="ventacompraparcialmysqlfinal" optimistic-lock="version">
+        <id name="idNotaVenta" type="java.lang.Integer">
+            <column name="IdNotaVenta" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="compraventamvc1.modelo.datos.Cliente" fetch="select">
+            <column name="idCliente" />
+        </many-to-one>
+        <property name="fechaHora" type="timestamp">
+            <column name="Fecha_Hora" length="19" not-null="true" />
+        </property>
+        <set name="detalleventas" table="detalleventa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdNotaVenta" />
+            </key>
+            <one-to-many class="compraventamvc1.modelo.datos.Detalleventa" />
+        </set>
+    </class>
+</hibernate-mapping>

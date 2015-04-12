@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-abr-2015 14:39:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="compraventamvc1.modelo.datos.Producto" table="producto" catalog="ventacompraparcialmysqlfinal" optimistic-lock="version">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="IdProducto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categoria" class="compraventamvc1.modelo.datos.Categoria" fetch="select">
+            <column name="IdCategoria" />
+        </many-to-one>
+        <many-to-one name="detallecompra" class="compraventamvc1.modelo.datos.Detallecompra" update="false" insert="false" fetch="select">
+            <column name="IdCategoria" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="precio" type="float">
+            <column name="Precio" precision="12" scale="0" not-null="true" />
+        </property>
+        <set name="detalleventas" table="detalleventa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdProducto" />
+            </key>
+            <one-to-many class="compraventamvc1.modelo.datos.Detalleventa" />
+        </set>
+        <set name="tiendaSucursals" table="tienda_sucursal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdProducto" />
+            </key>
+            <one-to-many class="compraventamvc1.modelo.datos.TiendaSucursal" />
+        </set>
+    </class>
+</hibernate-mapping>
