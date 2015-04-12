@@ -5,6 +5,7 @@
  */
 package compraventamvc1.controladores;
 
+import compraventamvc1.modelo.utilidades.DataBaseHelper;
 import compraventamvc1.vista.VCliente;
 import compraventamvc1.vista.VPrincipal;
 import compraventamvc1.vista.VProducto;
@@ -17,7 +18,7 @@ import java.awt.event.WindowEvent;
  *
  * @author Lion
  */
-public class CPrincipal {
+public class CPrincipal extends DataBaseHelper{
 
     /**
      * @param args the command line arguments
@@ -72,6 +73,7 @@ public class CPrincipal {
             @Override
             public void windowActivated(WindowEvent e) {
                 super.windowActivated(e); 
+                getSession();
                  System.out.println("La venta esta activa");
             }
 
@@ -86,6 +88,7 @@ public class CPrincipal {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
+                closeSession();
                 System.out.println("La ventana Se esta cerrando");
             }
             

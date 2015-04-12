@@ -21,6 +21,9 @@ public abstract class DataBaseHelper {
     private  Session session;
 
     public Session getSession() {
+        if(session==null){
+            session=NewHibernateUtil.getSessionFactory().getCurrentSession();
+        }
         return session;
     }
     
@@ -74,6 +77,11 @@ public abstract class DataBaseHelper {
     public void initTransaction(){
         this.session=NewHibernateUtil.getSessionFactory().getCurrentSession();
         this.session.beginTransaction();
+    }
+    public void closeSession(){
+        if(session!=null && session.isOpen()){
+            this.session.close();
+        }
     }
     public void closeTransaction(){
         this.session.getTransaction().commit();
