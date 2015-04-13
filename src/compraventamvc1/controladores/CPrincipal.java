@@ -5,6 +5,9 @@
  */
 package compraventamvc1.controladores;
 
+import compraventamvc1.modelo.datos.Cliente;
+import compraventamvc1.modelo.datos.Detalleventa;
+import compraventamvc1.modelo.negocio.NVenta;
 import compraventamvc1.modelo.utilidades.DataBaseHelper;
 import compraventamvc1.vista.VCliente;
 import compraventamvc1.vista.VPrincipal;
@@ -13,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 /**
  *
@@ -36,6 +40,7 @@ public class CPrincipal extends DataBaseHelper{
     private CProducto cProcducto;
     private CCategoria cCategoria;
     private CProveedor cProveedor;
+    private CVenta cVenta;
     public CPrincipal() {
         vPrincipal=new VPrincipal();
         initComponent();
@@ -74,24 +79,25 @@ public class CPrincipal extends DataBaseHelper{
             public void windowActivated(WindowEvent e) {
                 super.windowActivated(e); 
                 getSession();
-                 System.out.println("La venta esta activa");
-            }
-
-            @Override
-            public void windowOpened(WindowEvent e) {
-                super.windowOpened(e); //To change body of generated methods, choose Tools | Templates.
-                 System.out.println("La ventana se esta abriendo");
-            }
-            
-
-            
+                 System.out.println("La venta principal esta activa");
+            }  
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
                 closeSession();
-                System.out.println("La ventana Se esta cerrando");
+                System.out.println("La ventana principal Se esta cerrando");
             }
             
+        });
+        vPrincipal.btnventa.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                cVenta=new CVenta();
+            }
+           
+           
         });
         
         vPrincipal.setVisible(true);

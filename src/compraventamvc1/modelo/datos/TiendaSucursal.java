@@ -57,6 +57,11 @@ public class TiendaSucursal  implements java.io.Serializable {
         this.ubicacion = ubicacion;
     }
 
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+
 
 
 

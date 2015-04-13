@@ -78,6 +78,11 @@ public class Cliente  implements java.io.Serializable {
         this.referenciaclientes = referenciaclientes;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(this.nitCi);
+    }
+
 
 
 

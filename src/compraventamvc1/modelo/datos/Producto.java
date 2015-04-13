@@ -86,6 +86,11 @@ public class Producto  implements java.io.Serializable {
         this.tiendaSucursals = tiendaSucursals;
     }
 
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+
 
 
 

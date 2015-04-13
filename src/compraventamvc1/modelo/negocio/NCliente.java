@@ -1,12 +1,14 @@
+package compraventamvc1.modelo.negocio;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-package compraventamvc1.modelo.negocio;
 
-import compraventamvc1.modelo.datos.Producto;
+
+import compraventamvc1.modelo.datos.Cliente;
 import compraventamvc1.modelo.utilidades.DataBaseHelper;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -15,26 +17,26 @@ import org.hibernate.HibernateException;
  *
  * @author BDiamond
  */
-public class NProducto extends DataBaseHelper{
-    
-    public Producto InsertarProducto(Producto producto) throws Exception{
-        if (producto !=null){
+public class NCliente extends DataBaseHelper{
+       
+    public Cliente InsertarCliente(Cliente cliente) throws Exception{
+        if (cliente !=null){
             Object aux;
-            aux= saveObjet(producto);
+            aux= saveObjet(cliente);
                 if(aux !=null){
-                    return (Producto) aux;
+                    return (Cliente) aux;
                 }else{
                     throw new Exception("Error al insertar el producto");
                 }
         }
         return null;
     }
-    public List<Producto> BuscarProductoPorNombre(Producto producto) throws Exception{
-        List<Producto> result=null;
-        if(producto!=null){
+    public List<Cliente> BuscarClientePorNombre(Cliente cliente) throws Exception{
+        List<Cliente> result=null;
+        if(cliente!=null){
             try{
             initTransaction();
-                result=getSession().createSQLQuery("Select * from producto where Nombre like '" +producto.getNombre()+ "%' ;").addEntity(Producto.class).list();
+                result=getSession().createSQLQuery("Select * from Cliente where nombre like '" +cliente.getNombre()+ "'  ").addEntity(Cliente.class).list();
             
             }catch(HibernateException HE){
                throw new Exception("Error durante la busqueda");
@@ -44,26 +46,28 @@ public class NProducto extends DataBaseHelper{
     }
         throw new Exception("No se puede Buscar valores Nulos");
     }
-    public Producto ModificarProducto(Producto producto) throws Exception{
-        if (producto!= null){
+    public Cliente ModificarCliente(Cliente cliente) throws Exception{
+        if (cliente!= null){
             try{
-                producto=(Producto) updateObject(producto);
+                cliente=(Cliente) updateObject(cliente);
             }catch(HibernateException HE){
-                HE.printStackTrace();
                 throw new Exception("Error al Modificar");
             }           
         }
-        return producto;
+        return cliente;
     }
-       public List<Producto> ListarProducto(){
-       List<Producto> result=null;
-       
+       public List<Cliente> ListarCliente(){
+       List<Cliente> result=null;
            try {
                initTransaction();
-               result=getSession().createSQLQuery("Select * from producto").addEntity(Producto.class).list();
+               result=getSession().createSQLQuery("Select * from cliente").addEntity(Cliente.class).list();
            } catch (Exception e) {
+               System.out.println("Error al listar el proyecto");
+               e.printStackTrace();
            }
-           finally{closeTransaction();}
+           finally{
+               closeTransaction();
+           }
         return result;
    }
 }
